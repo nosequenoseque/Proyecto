@@ -1,8 +1,10 @@
 <?php
+
 die('hola');
+
 //require("class.phpmailer.php");
 
-include_once 'php/archivosPhp.php';
+//include_once 'php/archivosPhp.php';
 
 $action = '';
 
