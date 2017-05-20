@@ -284,7 +284,8 @@ class Usuario {
                 $conexionBD->commit();
                 $conexionBD->exec('UNLOCK TABLES');
                 $conexionBD = null;
-                enviarMailVerifiacion();
+                
+                enviarMailVerifiacion($this->mail);
                 
                 return true;
                 
