@@ -2,12 +2,7 @@
 
 //require("class.phpmailer.php");
 
-include_once 'php/phpmailer/class.phpmailer.php';
-include_once 'php/phpmailer/class.smtp.php';
-
-include_once 'php/utilidades/utilidades.php';
-include_once 'php/clases/clases.php';
-
+include_once 'php/archivosPhp.php';
 
 $action = '';
 
@@ -18,8 +13,7 @@ if (existeGET('action')) {
 
 switch ($action) {
     case 'registrarse':
-        mandarMailConfirmacion('zegarr96@gmail.com');
-        //registrarse();
+        registrarse();
         break;
     case 'verificarCuenta':
         verificarCuenta();
@@ -31,43 +25,35 @@ switch ($action) {
 
 function paginaDefault() {
     
-    $pagina = buscarHtml('./html/', 'pages-register.html');
-    //$texto = '<div id=>';
-   // $contenido = remplazoTagParticular('<#tabla>', $texto, $paginaAux);
     
-
-
-//$pagina = buscarHtml('./html/', 'pages-register.html');
+    $pagina = new Pagina();
+    $pagina->setPagina('registrarse');
+    $pagina->setPagina('registrarse');
+    $pagina->setJs('js/registrarse.js');
+    $pagina->armarPagina();
+    $pagina->retornarPagina();
     
-    die($pagina);
 }
 
 function registrarse() {
 
     $usuario = obtenerPOST('usuario');
+    $pass = obtenerPOST('password');
+    $nombre = obtenerPOST('nombre');
+    $apellido = obtenerPOST('apellido');
     $mail = obtenerPOST('mail');
-    $pass = obtenerPOST('contrasena');
-
-    try {
-
-        $conexionBD = new conexionBD();
-        $conexion = $conexionBD->conectar();
-
-// prepare sql and bind parameters
-        $sql = $conexion->prepare("INSERT INTO usuarios (usuario, pass, mail) VALUES (:usuario, :pass, :mail)");
-        $sql->bindValue(':usuario', $usuario);
-        $sql->bindValue(':pass', $pass);
-        $sql->bindValue(':mail', $mail);
-
-        if ($sql->execute()) {
-            echo 'Se ingreso Correctamente';
-        } else {
-            echo 'Error al ejecutar la consulta';
+    
+    
+    $usuario = new Usuario($usuario, $pass, $nombre, $apellido, $mail);
+    if($usuario->validar()){
+        if($usuario->guardar()){
+            die('Se registró correctamente! Te hemos enviado un mail con un link para que actives tu cuenta.');
+        }else{
+            die('Error al registrarse.');
         }
-    } catch (PDOException $e) {
-        echo "Error: " . $e->getMessage();
+    }else{
+        die('Error en los datos.');
     }
-    $conn = null;
 }
 
 function verificarCuenta() {

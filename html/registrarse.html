@@ -52,8 +52,24 @@
                                     <div class="row">
                                         <div class="col-xs-12 col-xl-6">
                                             <div class="form-group floating-labels">
+                                                <label for="nombre">Nombre</label>
+                                                <input id="nombre" autocomplete="off" type="text" name="nombre">
+                                                <p class="error-block"></p>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-xl-6">
+                                            <div class="form-group floating-labels">
+                                                <label for="apellido">Apellido</label>
+                                                <input id="apellido" autocomplete="off" type="text" name="apellido">
+                                                <p class="error-block"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-12 col-xl-6">
+                                            <div class="form-group floating-labels">
                                                 <label for="password">Contraseña</label>
-                                                <input id="password" autocomplete="off" type="password" name="contrasena">
+                                                <input id="password" autocomplete="off" type="password" name="password">
                                                 <p class="error-block"></p>
                                             </div>
                                         </div>
@@ -76,8 +92,12 @@
                                         </div>
                                     </div>
                                 </form>
+                                <div id="divAlertas">
+                                    
+                                </div>
                             </div>
                         </div>
+                        <!--
                         <p class="social-buttons">
                             <button type="button" class="btn btn-solid btn-circle btn-facebook btn-lg"><i class="fa fa-facebook"></i> 
                             </button>
@@ -86,6 +106,7 @@
                             <button type="button" class="btn btn-solid btn-circle btn-google btn-lg"><i class="fa fa-google"></i> 
                             </button>
                         </p>
+                        -->
                         <p class="copyright text-sm">&copy; Copyright 2016</p>
                     </div>
                 </div>
@@ -110,5 +131,7 @@
         <script src="scripts/main.js"></script>
         <script src="scripts/components/floating-labels.js"></script>
         <script src="scripts/pages-register.js"></script>
+        <#scripts>
+        
     </body>
 </html>

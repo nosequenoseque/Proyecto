@@ -3,6 +3,6 @@
 include_once 'php/archivosPhp.php';
 
 $pagina = new Pagina();
-$pagina->setPagina('login');
+$pagina->setPagina('registrarse');
 
 $pagina->retornarPagina();

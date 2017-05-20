@@ -10,22 +10,25 @@
         $('body').attr('data-direction', config.direction);
         var username = $('.create-account-page #username');
         username.floatingLabels({
-            errorBlock: 'Please enter your username'
+            errorBlock: 'Ingrese su nombre de usuario.'
         });
         var email = $('.create-account-page #email');
         email.floatingLabels({
-            errorBlock: 'Please enter your email',
-            isEmailValid: 'Please enter a valid email'
+            errorBlock: 'Ingrese su email.',
+            isEmailValid: 'Email invalido'
         });
+        
+        var minLength=10;
+        
         var password = $('.create-account-page #password');
         password.floatingLabels({
-            errorBlock: 'Please enter a valid password',
-            minLength: 10
+            errorBlock: 'La contraseña debe tener mas de '+ minLength +' caracteres.',
+            minLength: minLength
         });
         var confirmPassword = $('.create-account-page #confirm-password');
         confirmPassword.floatingLabels({
-            errorBlock: 'Please confirm your password correctly',
-            minLength: 6,
+            errorBlock: 'Las contraseñas no coinciden.',
+            minLength: minLength,
             isFieldEqualTo: $('#password')
         });
     });

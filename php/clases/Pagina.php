@@ -93,7 +93,7 @@ class Pagina {
         $this->pagina = remplazoTagParticular('<#menu>', $this->menu, $this->pagina);
         $this->pagina = remplazoTagParticular('<#titulo>', $this->titulo, $this->pagina);
         $this->pagina = remplazoTagParticular('<#css>', $this->css, $this->pagina);
-        $this->pagina = remplazoTagParticular('<#js>', $this->js, $this->pagina);
+        $this->pagina = remplazoTagParticular('<#scripts>', $this->js, $this->pagina);
         $this->pagina = remplazoTagParticular('<#contenido>', $this->contenido, $this->pagina);
     }
     public function retornarPagina() {

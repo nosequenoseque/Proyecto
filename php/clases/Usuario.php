@@ -285,13 +285,14 @@ class Usuario {
                 $conexionBD->exec('UNLOCK TABLES');
                 $conexionBD = null;
                 enviarMailVerifiacion();
-                die('Se registró correctamente! Te hemos enviado un mail con un link para que actives tu cuenta.');
+                
+                return true;
+                
             } catch (PDOException $e) {
                 $conexionBD->rollBack();
                 $conexionBD->exec('UNLOCK TABLES');
                 $conexionBD = null;
-                die('Error al registrarse.');
-                //echo "Error: " . $e->getMessage();
+                return false;
             } finally {
                 
             }
