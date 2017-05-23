@@ -18,9 +18,9 @@
             errorBlock: 'Please enter a valid password',
             minLength: 6
         });
-        $('.login-page .btn-login').click(function(e) {
-            e.preventDefault();
-            return false;
-        });
+//        $('.login-page .btn-login').click(function(e) {
+//            e.preventDefault();
+//            return false;
+//        });
     });
 })();

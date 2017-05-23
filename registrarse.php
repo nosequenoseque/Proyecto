@@ -1,10 +1,6 @@
 <?php
 
-die('hola');
-
-//require("class.phpmailer.php");
-
-//include_once 'php/archivosPhp.php';
+include_once 'php/archivosPhp.php';
 
 $action = '';
 
@@ -27,11 +23,9 @@ switch ($action) {
 
 function paginaDefault() {
     
-    
     $pagina = new Pagina();
     $pagina->setPagina('registrarse');
-    $pagina->setPagina('registrarse');
-    $pagina->setJs('js/registrarse.js');
+    $pagina->agregarJS('js/registrarse.js');
     $pagina->armarPagina();
     $pagina->retornarPagina();
     
@@ -40,30 +34,32 @@ function paginaDefault() {
 function registrarse() {
 
     $usuario = obtenerPOST('usuario');
-    $pass = obtenerPOST('password');
+    $pass = obtenerPOST('pass');
     $nombre = obtenerPOST('nombre');
     $apellido = obtenerPOST('apellido');
     $mail = obtenerPOST('mail');
     
     
-    $usuario = new Usuario($usuario, $pass, $nombre, $apellido, $mail);
-    if($usuario->validar()){
-        if($usuario->guardar()){
+    $newUsuario = new Usuario($usuario, $pass, $nombre, $apellido, $mail);
+    
+    if($newUsuario->validar()){
+        if($newUsuario->guardar()){
+            
+            mandarMailConfirmacion($mail, $newUsuario->getOid(), $newUsuario->getCodigoV());
             die('Se registró correctamente! Te hemos enviado un mail con un link para que actives tu cuenta.');
         }else{
             die('Error al registrarse.');
         }
     }else{
-        die('Error en los datos.');
+        die ('Error en los datos.');
     }
 }
 
 function verificarCuenta() {
-    die('verificar cuenta');
+    die('Verificar cuenta');
 }
 
-function mandarMailConfirmacion($mailUsuario) {
-
+function mandarMailConfirmacion($mailUsuario, $idUsuario, $codigoV) {
 
     //link para que la cuenta que enviara los mails habilite los permisos para que otras aplicaciones accedan a ella
     // https://myaccount.google.com/lesssecureapps
@@ -73,8 +69,8 @@ function mandarMailConfirmacion($mailUsuario) {
     //    lastname: pruebaYED
     //    pass: mailprueba12345
 
-    $idUsuario = 122;
-    $codigo = 'sjhdjakshdjk3jh4kj32dkhd923iodjkws';
+    $idUsuario = $idUsuario;
+    $codigo = $codigoV;
 
     $mail = new PHPMailer();
 
@@ -94,7 +90,7 @@ function mandarMailConfirmacion($mailUsuario) {
     $mail->AddAddress($mailUsuario); // Esta es la dirección a donde enviamos
     $mail->IsHTML(true); // El correo se envía como HTML
     $mail->Subject = "Verificacion de Cuenta YED"; // Este es el titulo del email.
-    $body = 'Para activar tu cuenta en YED haz click en este <a href="registrarse.php?id=' . $idUsuario . '&code=' . $codigo . '">link !</a>';
+    $body = 'Para activar tu cuenta en YED haz click en este <a href="http://localhost:8181/Proyecto/registrarse.php?action=verificarCuenta&id=' . $idUsuario . '&codigo=' . $codigo . '">link !</a>';
     $mail->Body = $body; // Mensaje a enviar
     
     $exito = $mail->Send(); // Envía el correo.

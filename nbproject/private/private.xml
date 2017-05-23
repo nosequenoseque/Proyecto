@@ -12,8 +12,12 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/wamp64/www/ProyectoYED/login.php</file>
-            <file>file:/C:/wamp64/www/ProyectoYED/registrarse.php</file>
+            <file>file:/C:/wamp64/www/Proyecto/js/login.js</file>
+            <file>file:/C:/wamp64/www/Proyecto/php/clases/Usuario.php</file>
+            <file>file:/C:/wamp64/www/Proyecto/login.php</file>
+            <file>file:/C:/wamp64/www/Proyecto/registrarse.php</file>
+            <file>file:/C:/wamp64/www/Proyecto/index.php</file>
+            <file>file:/C:/wamp64/www/Proyecto/html/login.html</file>
         </group>
     </open-files>
 </project-private>

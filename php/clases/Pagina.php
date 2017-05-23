@@ -62,7 +62,7 @@ class Pagina {
     // </editor-fold>
     
     public function agregarJS($js) {
-        $newJS = '<script src="' . $js . '"></script>';
+        $newJS = '<script src="'. $js .'" type="text/javascript"></script>';
         $this->js .= $newJS;
     }
     public function agregarCSS($css) {

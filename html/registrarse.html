@@ -26,25 +26,25 @@
                             Registrarse
                         </h1>
                         <h4>
-                            Por favor ingrese su direccion de correo electronico y una contraseña para crear su cuenta
+                            Por favor ingrese sus datos para crear la cuenta.
                         </h4>
 
                         <div class="row">
                             <div class="offset-xs-2 col-xs-8 offset-sm-3 col-sm-6 offset-md-3 col-md-6 offset-lg-4 col-lg-4">
 
-                                <form name="form" action="registrarse.php?action=registrarse" method="post">
+                                <form name="form" action="">
                                     <div class="row">
                                         <div class="col-xs-12 col-xl-6">
                                             <div class="form-group floating-labels">
-                                                <label for="username">Usuario</label>
-                                                <input id="username" autocomplete="off" type="text" name="usuario">
+                                                <label for="usuario">Usuario</label>
+                                                <input id="usuario" autocomplete="off" type="text" name="usuario">
                                                 <p class="error-block"></p>
                                             </div>
                                         </div>
                                         <div class="col-xs-12 col-xl-6">
                                             <div class="form-group floating-labels">
-                                                <label for="email">Mail</label>
-                                                <input id="email" autocomplete="off" type="email" name="mail">
+                                                <label for="mail">Mail</label>
+                                                <input id="mail" autocomplete="off" type="email" name="mail">
                                                 <p class="error-block"></p>
                                             </div>
                                         </div>
@@ -75,7 +75,7 @@
                                         </div>
                                         <div class="col-xs-12 col-xl-6">
                                             <div class="form-group floating-labels">
-                                                <label for="confirm-password">Confirm password</label>
+                                                <label for="confirm-password">Confirmar contraseña</label>
                                                 <input id="confirm-password" autocomplete="off" type="password" name="confirm-password">
                                                 <p class="error-block"></p>
                                             </div>
@@ -84,29 +84,23 @@
 
                                     <br />
 
-                                    <p class="text-center">Politicas de privacidad</p>
+                                    <p class="text-center">Políticas de privacidad</p>
 
                                     <div class="row buttons">
                                         <div class="col-xs-12">
-                                            <input type="submit" class="btn btn-lg btn-info btn-block no-border" value="Registrarse">
+                                            <input type="button" class="btn btn-lg btn-info btn-block no-border" value="Registrarse" id="btnRegistrarse">
                                         </div>
                                     </div>
                                 </form>
+                                <div id="loading" hidden="true">
+                                    <img src="imagenes/loading.gif" height="50" width="50"/>
+                                </div>
                                 <div id="divAlertas">
                                     
                                 </div>
                             </div>
                         </div>
-                        <!--
-                        <p class="social-buttons">
-                            <button type="button" class="btn btn-solid btn-circle btn-facebook btn-lg"><i class="fa fa-facebook"></i> 
-                            </button>
-                            <button type="button" class="btn btn-solid btn-circle btn-twitter btn-lg"><i class="fa fa-twitter"></i> 
-                            </button>
-                            <button type="button" class="btn btn-solid btn-circle btn-google btn-lg"><i class="fa fa-google"></i> 
-                            </button>
-                        </p>
-                        -->
+                        <br>
                         <p class="copyright text-sm">&copy; Copyright 2016</p>
                     </div>
                 </div>
@@ -132,6 +126,5 @@
         <script src="scripts/components/floating-labels.js"></script>
         <script src="scripts/pages-register.js"></script>
         <#scripts>
-        
     </body>
 </html>

@@ -10,7 +10,7 @@ class conexionBD {
     public function conectar() {
 
         try {
-            $this->conexion = new PDO('mysql:host=' . $this->nombreServer . ';dbname=yedPrueba', $this->usuario, $this->pass);
+            $this->conexion = new PDO('mysql:host=' . $this->nombreServer . ';dbname=finanzas', $this->usuario, $this->pass);
             $this->conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             //die ("Conectado Correctamente");
             return $this->conexion;
