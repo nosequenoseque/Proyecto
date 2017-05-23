@@ -30,3 +30,7 @@ function paginaDefault() {
 function login(){
     
 }
+
+function noseque(){
+    //ncodigo de prueba a ver si la gente puede subir codigo sin permiso
+}
