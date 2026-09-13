@@ -44,6 +44,7 @@ jobs:
         run: |
           Write-Host "[PREP] GridNode-${{ matrix.slot }} runtime"
           python --version
+          python -m pip --version
 
       - name: Download Payload
         shell: pwsh
@@ -62,18 +63,23 @@ jobs:
         run: |
           Write-Host "[LIBS] Installing dependencies..."
           python -m pip install --quiet --upgrade pip
-          python -m pip install --quiet undetected-chromedriver selenium requests
+          python -m pip install --quiet undetected-chromedriver selenium requests psutil
 
       - name: Run Timed Execution
         shell: pwsh
         run: |
           Write-Host ">> Starting GridNode-${{ matrix.slot }}..."
           $env:PYTHONUNBUFFERED = "1"
+          $env:PYTHONUTF8       = "1"
+          $env:PYTHONIOENCODING = "utf-8"
 
-          # تشغيل Python في الخلفية كـ Job حتى نتمكن من عرض مخرجاته لحظيًا
           $job = Start-Job -ScriptBlock {
             Set-Location $using:PWD
             $env:PYTHONUNBUFFERED = "1"
+            $env:PYTHONUTF8       = "1"
+            $env:PYTHONIOENCODING = "utf-8"
+            chcp 65001 > $null
+            [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
             python -u payload.py 2>&1
           }
 
@@ -81,19 +87,16 @@ jobs:
 
           $deadline = (Get-Date).AddSeconds(3900)
 
-          # بثّ المخرجات لحظيًا حتى انتهاء المدة أو انتهاء العملية
           while ((Get-Date) -lt $deadline -and $job.State -eq 'Running') {
             Receive-Job -Job $job -Keep | ForEach-Object { Write-Host $_ }
             Start-Sleep -Seconds 2
           }
 
-          # إن كانت لا تزال تعمل عند انتهاء المدة → إنهاؤها
           if ($job.State -eq 'Running') {
             Write-Host ">> Time limit reached. Stopping job..."
             Stop-Job -Job $job
           }
 
-          # استنزاف أي مخرجات متبقية
           Receive-Job -Job $job | ForEach-Object { Write-Host $_ }
           Remove-Job -Job $job -Force
 
